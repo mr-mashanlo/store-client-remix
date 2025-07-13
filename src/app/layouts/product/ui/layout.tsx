@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { Header } from '@/widgets/header';
 
-const Main: FC = () => {
+const Product: FC = () => {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ const Main: FC = () => {
   );
 };
 
-export default Main;
+export default Product;

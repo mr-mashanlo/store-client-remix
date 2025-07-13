@@ -1,9 +1,9 @@
 import { kyInstance } from '@/shared/api';
 
-import { ServiceInterface } from '../model/interface';
+import { AuthServiceInterface } from '../model/interface';
 import { AuthInputType } from '../model/type';
 
-export class AuthService implements ServiceInterface {
+export class AuthService implements AuthServiceInterface {
 
   signIn = async ( request: Request, data: AuthInputType ) => {
     return await kyInstance( 'auth/signin', { method: 'post', body: JSON.stringify( data ), headers: { cookie: request.headers.get( 'cookie' ) ?? '' } } );

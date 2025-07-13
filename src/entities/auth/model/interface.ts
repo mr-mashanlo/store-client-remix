@@ -2,7 +2,7 @@ import { KyResponse } from 'ky';
 
 import { AuthInputType } from './type';
 
-export interface ServiceInterface {
+export interface AuthServiceInterface {
 
   signIn( request: Request, data: AuthInputType ): Promise<KyResponse>
 

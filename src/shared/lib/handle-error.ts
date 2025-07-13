@@ -6,7 +6,7 @@ export const handleError = async ( error: unknown ) => {
     return z.flattenError( error ).fieldErrors || {};
   } else if ( error instanceof HTTPError ) {
     const json = await error.response.json();
-    return { message: json.errors[0].message };
+    return { message: json.message };
   } else {
     return { message: 'Something went wrong. Please try again later' };
   }

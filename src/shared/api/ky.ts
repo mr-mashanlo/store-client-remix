@@ -10,10 +10,8 @@ export const kyInstance = ky.create( {
     methods: [ 'get', 'post', 'put', 'delete' ]
   },
   hooks: {
-    afterResponse: [
-      async ( request, options, response ) => {
-        console.log( response.status );
-      }
-    ]
+    // afterResponse: [
+    //   async ( request, options, response ) => { console.log( response.status ); }
+    // ]
   }
 } );

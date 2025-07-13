@@ -1,3 +1,4 @@
 import { kyInstance } from './ky';
+import { BaseService, BaseServiceInterface } from './service';
 
-export { kyInstance };
+export { BaseService, type BaseServiceInterface, kyInstance };

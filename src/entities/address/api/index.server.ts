@@ -1,4 +1,7 @@
-import { AddressController } from './controller';
-import { AddressService } from './service';
+import { UserService } from '@/shared/api';
 
-export const addressController = new AddressController( new AddressService() );
+import { AddressController } from './controller';
+
+const baseService = new UserService( 'address' );
+
+export const addressController = new AddressController( baseService );

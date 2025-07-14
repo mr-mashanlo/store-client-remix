@@ -1,5 +1,5 @@
 import { Form, Link, useActionData, useNavigation } from '@remix-run/react';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import action from '../api/action';
@@ -7,9 +7,18 @@ import action from '../api/action';
 const SignUp: FC = () => {
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();
+  const [ isError, setIsError ] = useState( false );
+
+  useEffect( () => {
+    if ( 'errors' in ( actionData || {} ) ) setIsError( true );
+  }, [ actionData ] );
+
+  const handleFormChande = () => {
+    if ( isError ) setIsError( false );
+  };
 
   return (
-    <Form method="post" action="/signup" aria-describedby="form-error" className="w-full sm:w-80">
+    <Form onChange={handleFormChande} method="post" action="/signup" aria-describedby="form-error" className="w-full sm:w-90">
       <fieldset disabled={navigation.formAction === '/signin'}>
         <legend className="text-2xl text-center font-bold">Sign up</legend>
         <label htmlFor="email" className="block mt-8 relative">

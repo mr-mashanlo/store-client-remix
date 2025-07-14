@@ -17,7 +17,7 @@ const ResetPassword: FC = () => {
   };
 
   return (
-    <Form onChange={handleFormChande} method="post" action="/reset" aria-describedby="form-error" className="w-full sm:w-80">
+    <Form onChange={handleFormChande} method="post" action="/reset" aria-describedby="form-error" className="w-full sm:w-90">
       <fieldset disabled={navigation.formAction === '/reset'}>
         <legend className="text-2xl text-center font-bold">Reset password</legend>
         <label htmlFor="email" className="block mt-8 relative">

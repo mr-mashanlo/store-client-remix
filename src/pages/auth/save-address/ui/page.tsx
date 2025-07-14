@@ -17,7 +17,7 @@ const SaveAddress: FC = () => {
   };
 
   return (
-    <Form onChange={handleFormChande} method="post" action="/save-address" aria-describedby="form-error" className="w-full sm:w-100">
+    <Form onChange={handleFormChande} method="post" action="/save-address" aria-describedby="form-error" className="w-full sm:w-120">
       <fieldset disabled={navigation.formAction === '/save-address'}>
         <legend className="text-2xl text-center font-bold">Add your address</legend>
         <label htmlFor="address" className="block mt-8 relative">

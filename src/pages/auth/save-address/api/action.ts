@@ -1,6 +1,6 @@
 import { ActionFunctionArgs, data, redirect } from '@remix-run/node';
 
-import { addressController } from '@/entities/address';
+import { addressController } from '@/entities/address/api/index.server';
 import { handleError } from '@/shared/lib';
 
 interface ActionErrorType {

@@ -17,7 +17,7 @@ const SignIn: FC = () => {
   };
 
   return (
-    <Form onChange={handleFormChande} method="post" action="/signin" aria-describedby="form-error" className="w-full sm:w-80">
+    <Form onChange={handleFormChande} method="post" action="/signin" aria-describedby="form-error" className="w-full sm:w-90">
       <fieldset disabled={navigation.formAction === '/signin'}>
         <legend className="text-2xl text-center font-bold">Sign in</legend>
         <label htmlFor="email" className="block mt-8 relative">

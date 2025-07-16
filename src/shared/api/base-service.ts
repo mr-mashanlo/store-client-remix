@@ -4,6 +4,8 @@ import { kyInstance } from './ky';
 
 export interface BaseServiceInterface<T> {
 
+  aggregate( request: Request, params: Record<string, string> ): Promise<KyResponse>
+
   create( request: Request, data: T ): Promise<KyResponse>
 
   delete( request: Request, params: Record<string, string> ): Promise<KyResponse>
@@ -23,6 +25,11 @@ export class BaseService<T> implements BaseServiceInterface<T> {
   private entity: string;
 
   constructor( entity: string ) { this.entity = entity; };
+
+  aggregate = async ( request: Request, params: Record<string, string> ) => {
+    const searchParams = new URLSearchParams( params ).toString();
+    return await kyInstance( `${this.entity}/a?${searchParams}`, { headers: { cookie: request.headers.get( 'cookie' ) ?? '' } } );
+  };
 
   create = async ( request: Request, data: T ) => {
     return await kyInstance( this.entity, { method: 'post', body: JSON.stringify( data ), headers: { cookie: request.headers.get( 'cookie' ) ?? '' } } );

@@ -1,7 +1,7 @@
 import { BaseServiceInterface } from '@/shared/api';
 
 import { CategoryType } from '../model/type';
-import { validateCategoriesData, validateCategoryData } from '../model/validator';
+import { validateCategoryData } from '../model/validator';
 
 export class CategoryController {
 
@@ -9,17 +9,11 @@ export class CategoryController {
 
   constructor( service: BaseServiceInterface<CategoryType> ) { this.service = service; };
 
-  getMany = async ( request: Request ) => {
-    const response = await this.service.getMany( request, {} );
-    const json = await response.json();
-    return validateCategoriesData( json );
-  };
-
-  getOne = async ( request: Request, slug: string ) => {
-    const query = encodeURIComponent( JSON.stringify( { slug } ) );
-    const response = await this.service.getOne( request, { query } );
-    const json = await response.json();
-    return validateCategoryData( json );
+  getOne = async ( request: Request, option: object ) => {
+    const pipeline = encodeURIComponent( JSON.stringify( { ...option } ) );
+    const response = await this.service.aggregate( request, { pipeline } );
+    const json: unknown[] = await response.json();
+    return validateCategoryData( json[0] );
   };
 
 }

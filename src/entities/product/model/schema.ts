@@ -16,6 +16,7 @@ const CategoryZod = z.object( {
 
 const OptionZod = z.object( {
   _id: z.string(),
+  product: z.string(),
   name: z.string(),
   price: z.number(),
   image: ImageZod
@@ -23,6 +24,7 @@ const OptionZod = z.object( {
 
 export const ProductZod = z.object( {
   _id: z.string(),
+  uid: z.string(),
   name: z.string(),
   excerpt: z.string(),
   description: z.string(),

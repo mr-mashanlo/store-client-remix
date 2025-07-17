@@ -1,12 +1,12 @@
-import { ServiceInterface } from '../model/interface';
+import { AuthServiceInterface } from '../model/interface';
 import { AuthInputType } from '../model/type';
 import { validateAuthData, validateAuthInputData } from '../model/validator';
 
 export class AuthController {
 
-  private service: ServiceInterface;
+  private service: AuthServiceInterface;
 
-  constructor( service: ServiceInterface ) { this.service = service; };
+  constructor( service: AuthServiceInterface ) { this.service = service; };
 
   signIn = async ( request: Request, data: AuthInputType ) => {
     const body = validateAuthInputData( data );

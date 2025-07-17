@@ -10,7 +10,7 @@ import loader from '../api/loader';
 const Product: FC = () => {
   const loaderData = useLoaderData<typeof loader>();
   const [ searchParams, setSearchParams ] = useSearchParams();
-  const selectedOption = loaderData.options.find( option => option._id === searchParams.get( 'option' ) );
+  const selectedOption = loaderData.options.find( option => option.uid === searchParams.get( 'option' ) );
   const mergedImages = mergeImages( loaderData );
 
   const handleRadioChange = ( e: ChangeEvent<HTMLInputElement> ) => {
@@ -39,7 +39,7 @@ const Product: FC = () => {
               <div className="grid grid-cols-3 gap-5">
                 {loaderData.options.map( ( option ) => (
                   <label key={option._id} className="inline-block has-checked:outline-2 rounded-xl overflow-hidden cursor-pointer">
-                    <input onChange={handleRadioChange} checked={selectedOption?._id === option._id} value={option._id} name="option" type="radio" className="sr-only" />
+                    <input onChange={handleRadioChange} checked={selectedOption?.uid === option.uid} value={option.uid} name="option" type="radio" className="sr-only" />
                     <img src={`http://localhost:4173/${option.image.path}`} alt={option.image.alt} className="w-wull aspect-square bg-neutral-100" />
                   </label>
                 ) )}

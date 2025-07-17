@@ -9,6 +9,8 @@ const ImageZod = z.object( {
 
 export const OptionZod = z.object( {
   _id: z.string(),
+  uid: z.string(),
+  product: z.string(),
   name: z.string(),
   price: z.number(),
   image: ImageZod

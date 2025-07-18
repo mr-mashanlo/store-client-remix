@@ -10,8 +10,10 @@ interface ActionErrorType {
 
 const loader = async ( { request }: LoaderFunctionArgs ) => {
   try {
+    const url = new URL( request.url );
+    const from = url.searchParams.get( 'from' );
     const address = await addressController.getOne( request );
-    if ( address ) return redirect( '/' );
+    if ( address ) return redirect( from === 'cart' ? '/checkout' : '/' );
     return data( address );
   } catch ( error ) {
     const errors: ActionErrorType = await handleError( error );

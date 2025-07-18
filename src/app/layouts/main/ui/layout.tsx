@@ -1,13 +1,17 @@
-import { Outlet } from '@remix-run/react';
+import { Outlet, useLoaderData } from '@remix-run/react';
 import { FC } from 'react';
 
 import { Header } from '@/widgets/header';
 import { StoreControls } from '@/widgets/store-controls';
 
+import loader from '../api/loader';
+
 const Main: FC = () => {
+  const loaderData = useLoaderData<typeof loader>();
+
   return (
     <>
-      <Header />
+      <Header isAuth={loaderData.token} />
       <main>
         <Outlet />
       </main>

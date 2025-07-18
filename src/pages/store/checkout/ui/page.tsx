@@ -5,6 +5,7 @@ import loader from '../api/loader';
 
 const Checkout: FC = () => {
   const loaderData = useLoaderData<typeof loader>();
+  const total = loaderData.options.reduce( ( acc, order ) => { return acc += order.option.price * order.quantity; }, 0 );
 
   return (
     <section className="min-h-screen p-3 sm:p-20 flex flex-col justify-center gap-20">
@@ -26,9 +27,7 @@ const Checkout: FC = () => {
       </ul>
       <p className="text-center">{loaderData.address.address}</p>
       <div>
-        <Link to="/buy" className="w-30 h-10 mx-auto outline-offset-3 rounded-full cursor-pointer flex items-center justify-center bg-black text-white">
-          Buy
-        </Link>
+        <Link to="/buy" className="w-35 h-10 mx-auto outline-offset-3 rounded-full cursor-pointer flex items-center justify-center bg-black text-white">Buy ${total}</Link>
       </div>
     </section>
   );

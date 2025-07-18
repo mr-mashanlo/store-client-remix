@@ -1,7 +1,11 @@
 import { Link, NavLink } from '@remix-run/react';
 import { FC } from 'react';
 
-const Header: FC = () => {
+interface Props {
+  isAuth: string
+}
+
+const Header: FC<Props> = ( { isAuth } ) => {
   return (
     <header className="p-7.5 sm:px-20 absolute top-0 left-0 right-0">
       <div className="flex justify-between items-center gap-4">
@@ -12,7 +16,11 @@ const Header: FC = () => {
         </div>
         <nav aria-label="Header navigation">
           <ul className="flex items-center gap-10">
-            <li><NavLink to="/signin">Sign in</NavLink></li>
+            {
+              isAuth
+                ? <li><NavLink to="/account">Account</NavLink></li>
+                : <li><NavLink to="/signin">Sign in</NavLink></li>
+            }
           </ul>
         </nav>
       </div>

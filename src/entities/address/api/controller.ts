@@ -12,17 +12,20 @@ export class AddressController {
   create = async ( request: Request, data: AddressInputType ) => {
     const body = validateAddressInputData( data );
     const response = await this.service.create( request, body );
-    return validateAddressData( await response.json() );
+    const json = await response.json();
+    return validateAddressData( json );
   };
 
   getOne = async ( request: Request ) => {
     const response = await this.service.getOne( request, {} );
-    return validateAddressData( await response.json() );
+    const json = await response.json();
+    return json ? validateAddressData( json ) : json;
   };
 
   update = async ( request: Request, data: Partial<AddressInputType> ) => {
     const response = await this.service.update( request, data );
-    return validateAddressData( await response.json() );
+    const json = await response.json();
+    return validateAddressData( json );
   };
 
 }

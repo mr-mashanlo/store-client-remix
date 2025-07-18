@@ -1,4 +1,4 @@
-import { Form, Link, useActionData, useNavigation } from '@remix-run/react';
+import { Form, Link, useActionData, useNavigation, useSearchParams } from '@remix-run/react';
 import { FC, useEffect, useState } from 'react';
 
 import action from '../api/action';
@@ -6,6 +6,8 @@ import action from '../api/action';
 const SignIn: FC = () => {
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();
+  const [ searchParams ] = useSearchParams();
+  const from = searchParams.get( 'from' );
   const [ isError, setIsError ] = useState( false );
 
   useEffect( () => {
@@ -17,7 +19,7 @@ const SignIn: FC = () => {
   };
 
   return (
-    <Form onChange={handleFormChande} method="post" action="/signin" aria-describedby="form-error" className="w-full sm:w-90">
+    <Form onChange={handleFormChande} method="post" aria-describedby="form-error" className="w-full sm:w-90">
       <fieldset disabled={navigation.formAction === '/signin'}>
         <legend className="text-2xl text-center font-bold">Sign in</legend>
         <label htmlFor="email" className="block mt-8 relative">
@@ -41,7 +43,7 @@ const SignIn: FC = () => {
         <button className="w-full mt-5 p-3.5 rounded-xl bg-black text-white cursor-pointer outline-offset-3">Sign in</button>
       </fieldset>
       {actionData?.errors?.message ? <p id="form-error" role="alert" className="mt-5 text-2xs text-center">{actionData?.errors.message}</p> : null}
-      <p className="mt-5 text-center leading-6">Don&apos;t have an account? <Link to="/signup" title="Go to register page" className="font-bold hover:underline">Register</Link></p>
+      <p className="mt-5 text-center leading-6">Don&apos;t have an account? <Link to={from === 'cart' ? '/signup?from=cart' : '/signup'} title="Go to register page" className="font-bold hover:underline">Register</Link></p>
     </Form>
   );
 };

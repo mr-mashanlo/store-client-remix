@@ -10,10 +10,12 @@ interface ActionErrorType {
 
 const action = async ( { request }: ActionFunctionArgs ) => {
   try {
+    const url = new URL( request.url );
+    const from = url.searchParams.get( 'from' );
     const form = await request.formData();
     const body = { address: String( form.get( 'address' ) ) };
     await addressController.create( request, body );
-    return redirect( '/' );
+    return redirect( from === 'cart' ? '/checkout' : '/' );
   } catch ( error ) {
     const errors: ActionErrorType = await handleError( error );
     return data( { errors }, { status: 400 } );

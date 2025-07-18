@@ -38,7 +38,7 @@ export class UserService<T> implements UserServiceInterface<T> {
 
   getOne = async ( request: Request, params: Record<string, string> ) => {
     const searchParams = new URLSearchParams( params ).toString();
-    return await kyInstance( `${this.entity}?${searchParams}`, { headers: { cookie: request.headers.get( 'cookie' ) ?? '' } } );
+    return await kyInstance( `${this.entity}/me?${searchParams}`, { headers: { cookie: request.headers.get( 'cookie' ) ?? '' } } );
   };
 
   update = async ( request: Request, data: Partial<T> ) => {

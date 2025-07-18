@@ -1,4 +1,4 @@
-import { Form, Link, useActionData, useNavigation } from '@remix-run/react';
+import { Form, Link, useActionData, useNavigation, useSearchParams } from '@remix-run/react';
 import { FC, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -7,6 +7,8 @@ import action from '../api/action';
 const SignUp: FC = () => {
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();
+  const [ searchParams ] = useSearchParams();
+  const from = searchParams.get( 'from' );
   const [ isError, setIsError ] = useState( false );
 
   useEffect( () => {
@@ -18,7 +20,7 @@ const SignUp: FC = () => {
   };
 
   return (
-    <Form onChange={handleFormChande} method="post" action="/signup" aria-describedby="form-error" className="w-full sm:w-90">
+    <Form onChange={handleFormChande} method="post" aria-describedby="form-error" className="w-full sm:w-90">
       <fieldset disabled={navigation.formAction === '/signin'}>
         <legend className="text-2xl text-center font-bold">Sign up</legend>
         <label htmlFor="email" className="block mt-8 relative">
@@ -42,7 +44,7 @@ const SignUp: FC = () => {
         <button className="w-full mt-5 p-3.5 rounded-xl bg-black text-white cursor-pointer outline-offset-3">Sign up</button>
       </fieldset>
       {actionData?.errors?.message ? <p id="form-error" role="alert" className="mt-5 text-xs text-center text-red-400">{actionData?.errors.message}</p> : null}
-      <p className="mt-5 text-center leading-6">Already have an account? <Link to="/signin" title="Go to register page" className="font-bold hover:underline">Log in</Link></p>
+      <p className="mt-5 text-center leading-6">Already have an account? <Link to={from ? '/signin?from=cart' : '/signin'} title="Go to register page" className="font-bold hover:underline">Log in</Link></p>
     </Form>
   );
 };

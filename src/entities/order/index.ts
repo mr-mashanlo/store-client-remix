@@ -1,3 +1,3 @@
-import { validateOrderData } from './model/validator';
+import { validateOrderData, validateOrdersData } from './model/validator';
 
-export { validateOrderData };
+export { validateOrderData, validateOrdersData };

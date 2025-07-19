@@ -12,20 +12,21 @@ const action = async ( { request }: ActionFunctionArgs ) => {
   try {
     const form = await request.formData();
     const action = String( form.get( 'action' ) );
-    const option = String( form.get( 'option' ) );
+    const id = String( form.get( 'id' ) );
+    const uid = String( form.get( 'option' ) );
     const cookies = request.headers.get( 'Cookie' );
     const cookie = ( await cartCookie.parse( cookies ) ) || {};
     const cart = cookie.cart || [];
     let updatedCookie = '';
 
     if ( action === 'increment' ) {
-      updatedCookie = await cartCookie.serialize( { ...cookie, cart: increase( cart, option ) } );
+      updatedCookie = await cartCookie.serialize( { ...cookie, cart: increase( cart, id, uid ) } );
     }
     if ( action === 'decrement' ) {
-      updatedCookie  = await cartCookie.serialize( { ...cookie, cart: decrease( cart, option ) } );
+      updatedCookie  = await cartCookie.serialize( { ...cookie, cart: decrease( cart, uid ) } );
     }
 
-    return data( {}, { headers: { 'Set-Cookie': updatedCookie } } );
+    return data( { ok: true }, { headers: { 'Set-Cookie': updatedCookie } } );
   } catch ( error ) {
     const errors: ActionErrorType = await handleError( error );
     throw data( { errors }, { status: 400 } );

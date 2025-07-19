@@ -8,6 +8,8 @@ export interface UserServiceInterface<T> {
 
   delete( request: Request, params: Record<string, string> ): Promise<KyResponse>
 
+  getByID( request: Request, id: string, params: Record<string, string> ): Promise<KyResponse>
+
   getMany( request: Request, params: Record<string, string> ): Promise<KyResponse>
 
   getOne( request: Request, params: Record<string, string> ): Promise<KyResponse>
@@ -29,6 +31,11 @@ export class UserService<T> implements UserServiceInterface<T> {
   delete = async ( request: Request, params: Record<string, string> ) => {
     const searchParams = new URLSearchParams( params ).toString();
     return await kyInstance( `${this.entity}?${searchParams}`, { method: 'delete', headers: { cookie: request.headers.get( 'cookie' ) ?? '' } } );
+  };
+
+  getByID = async ( request: Request, id: string, params: Record<string, string> ) => {
+    const searchParams = new URLSearchParams( params ).toString();
+    return await kyInstance( `${this.entity}/${id}?${searchParams}`, { headers: { cookie: request.headers.get( 'cookie' ) ?? '' } } );
   };
 
   getMany = async ( request: Request, params: Record<string, string> ) => {

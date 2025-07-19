@@ -1,15 +1,15 @@
-import { Form, useLoaderData } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import { FC } from 'react';
 
 import loader from '../api/loader';
 
-const Checkout: FC = () => {
+const Order: FC = () => {
   const loaderData = useLoaderData<typeof loader>();
-  const total = loaderData.options.reduce( ( acc, order ) => { return acc += order.option.price * order.quantity; }, 0 );
+  const date = new Date( loaderData.created ).toLocaleDateString( 'en-US', { year: 'numeric', month: 'long', day: 'numeric' } );
 
   return (
     <section className="min-h-screen p-3 sm:p-20 flex flex-col justify-center gap-20">
-      <h2 className="text-center font-bold">Checkout</h2>
+      <h2 className="text-center font-bold">Order #{loaderData.uid} - creared: {date}</h2>
       <ul className="grid gap-10">
         {loaderData.options.map( ( { option, quantity } ) => (
           <li key={option._id}>
@@ -25,14 +25,9 @@ const Checkout: FC = () => {
           </li>
         ) )}
       </ul>
-      <p className="text-center">{loaderData.address.address}</p>
-      <div>
-        <Form method="post">
-          <button type="submit" className="w-35 h-10 mx-auto outline-offset-3 rounded-full cursor-pointer flex items-center justify-center bg-black text-white">Buy ${total}</button>
-        </Form>
-      </div>
+      <p className="text-center font-bold">{loaderData.status}</p>
     </section>
   );
 };
 
-export default Checkout;
+export default Order;

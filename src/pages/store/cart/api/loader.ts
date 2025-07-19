@@ -15,7 +15,7 @@ const loader = async ( { request }: LoaderFunctionArgs ) => {
     const token = getCookie( cookies, 'token' );
     const cookie = ( await cartCookie.parse( cookies ) ) || {};
     const cart: CartInputType = cookie.cart || {};
-    const uid = Object.values( cart ).map( option => option.option );
+    const uid = Object.keys( cart );
     const options = await optionController.getMany( request, { filter: { uid: { $in: uid } } } );
     const updatedOptions = options.map( option => ( { option, quantity: cart[option.uid].quantity } ) );
     const validatedOptions = validateCartData( updatedOptions );

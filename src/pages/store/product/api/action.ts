@@ -11,11 +11,12 @@ interface ActionErrorType {
 const action = async ( { request }: ActionFunctionArgs ) => {
   try {
     const form = await request.formData();
-    const option = String( form.get( 'option' ) );
+    const id = String( form.get( 'id' ) );
+    const uid = String( form.get( 'option' ) );
     const cookies = request.headers.get( 'Cookie' );
     const cookie = ( await cartCookie.parse( cookies ) ) || {};
     const cart: CartInputType = cookie.cart || {};
-    const updatedCookie = await cartCookie.serialize( { ...cookie, cart: increase( cart, option ) } );
+    const updatedCookie = await cartCookie.serialize( { ...cookie, cart: increase( cart, id, uid ) } );
     return data( { ok: true }, { headers: { 'Set-Cookie': updatedCookie } } );
   } catch ( error ) {
     const errors: ActionErrorType = await handleError( error );

@@ -19,6 +19,7 @@ const Cart: FC = () => {
                   <div className="justify-items-end">
                     <Form method="post" className="flex items-center bg-neutral-200/50 rounded-full">
                       <input value={option.uid} name="option" type="hidden" />
+                      <input value={option._id} name="id" type="hidden" />
                       <button value="decrement" name="action" type="submit" className="w-10 h-10  outline-offset-3 rounded-full cursor-pointer flex items-center justify-center">
                         <span className="sr-only">Remove from cart</span>
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" aria-hidden="true">

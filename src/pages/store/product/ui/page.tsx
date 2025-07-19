@@ -1,5 +1,5 @@
 import { Form, useLoaderData, useSearchParams } from '@remix-run/react';
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, Fragment } from 'react';
 
 import { getLowOption } from '@/entities/option';
 import { getHighOption } from '@/entities/option';
@@ -38,10 +38,13 @@ const Product: FC = () => {
             <Form method="post" className="mt-5">
               <div className="grid grid-cols-3 gap-5">
                 {loaderData.options.map( ( option ) => (
-                  <label key={option._id} className="inline-block has-checked:outline-2 rounded-xl overflow-hidden cursor-pointer">
-                    <input onChange={handleRadioChange} checked={selectedOption?.uid === option.uid} value={option.uid} name="option" type="radio" className="sr-only" />
-                    <img src={`http://localhost:4173/${option.image.path}`} alt={option.image.alt} className="w-wull aspect-square bg-neutral-100" />
-                  </label>
+                  <Fragment key={option._id}>
+                    <label className="inline-block has-checked:outline-2 rounded-xl overflow-hidden cursor-pointer">
+                      <input onChange={handleRadioChange} checked={selectedOption?.uid === option.uid} value={option.uid} name="option" type="radio" className="sr-only" />
+                      <img src={`http://localhost:4173/${option.image.path}`} alt={option.image.alt} className="w-wull aspect-square bg-neutral-100" />
+                    </label>
+                    <input defaultValue={selectedOption?._id} type="hidden" name="id" />
+                  </Fragment>
                 ) )}
               </div>
               <button type="submit" className="w-full mt-5 p-3.5 rounded-xl bg-black text-white outline-offset-3 cursor-pointer disabled:cursor-default disabled:opacity-70 ">Add to cart</button>

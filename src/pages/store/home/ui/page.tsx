@@ -15,7 +15,7 @@ const Home: FC = () => {
           <li key={product._id}>
             <article className="relative">
               <Link to={`/product/${product.uid}`}>
-                <img src={`http://localhost:4173/${product.images[0].path}`} alt={product.images[0].alt} className="w-full aspect-[4/3] object-cover bg-neutral-100" />
+                <img src={product.images[0].path} alt={product.images[0].alt} className="w-full aspect-[4/3] object-cover bg-neutral-100" />
               </Link>
               <h2 className="font-medium absolute left-5 bottom-5">{product.name}</h2>
               <p className="font-medium absolute right-5 bottom-5">

@@ -25,7 +25,7 @@ const Product: FC = () => {
         <ul className="grid gap-3 sm:gap-10 sm:col-span-2">
           {mergedImages.map( image => (
             <li key={image._id}>
-              <img src={`http://localhost:4173/${image.path}`} alt={image.alt} className="w-full aspect-[4/3] object-cover bg-neutral-100" />
+              <img src={image.path} alt={image.alt} className="w-full aspect-[4/3] object-cover bg-neutral-100" />
             </li>
           ) )}
         </ul>
@@ -41,7 +41,7 @@ const Product: FC = () => {
                   <Fragment key={option._id}>
                     <label className="inline-block has-checked:outline-2 rounded-xl overflow-hidden cursor-pointer">
                       <input onChange={handleRadioChange} checked={selectedOption?.uid === option.uid} value={option.uid} name="option" type="radio" className="sr-only" />
-                      <img src={`http://localhost:4173/${option.image.path}`} alt={option.image.alt} className="w-wull aspect-square bg-neutral-100" />
+                      <img src={option.image.path} alt={option.image.alt} className="w-wull aspect-square bg-neutral-100" />
                     </label>
                     <input defaultValue={selectedOption?._id} type="hidden" name="id" />
                   </Fragment>

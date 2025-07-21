@@ -17,7 +17,7 @@ const Checkout: FC = () => {
               <div className="justify-items-end">
                 <h3>{option.name}</h3>
               </div>
-              <img src={`http://localhost:4173/${option.image.path}`} alt={option.image.alt} className="w-25 aspect-square object-cover bg-neutral-100" />
+              <img src={option.image.path} alt={option.image.alt} className="w-25 aspect-square object-cover bg-neutral-100" />
               <div>
                 <p>{quantity} items for ${option.price}</p>
               </div>

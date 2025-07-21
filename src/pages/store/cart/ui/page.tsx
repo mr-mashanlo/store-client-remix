@@ -34,7 +34,7 @@ const Cart: FC = () => {
                       </button>
                     </Form>
                   </div>
-                  <img src={`http://localhost:4173/${option.image.path}`} alt={option.image.alt} className="w-25 aspect-square object-cover bg-neutral-100" />
+                  <img src={option.image.path} alt={option.image.alt} className="w-25 aspect-square object-cover bg-neutral-100" />
                   <div>
                     <h3>{option.name}</h3>
                     <p className="mt-1">{quantity} items for ${option.price}</p>

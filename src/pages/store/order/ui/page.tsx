@@ -1,15 +1,16 @@
 import { useLoaderData } from '@remix-run/react';
 import { FC } from 'react';
 
+import { formatDate } from '@/shared/lib';
+
 import loader from '../api/loader';
 
 const Order: FC = () => {
   const loaderData = useLoaderData<typeof loader>();
-  const date = new Date( loaderData.created ).toLocaleDateString( 'en-US', { year: 'numeric', month: 'long', day: 'numeric' } );
 
   return (
     <section className="min-h-screen p-3 sm:p-20 flex flex-col justify-center gap-20">
-      <h2 className="text-center font-bold">Order #{loaderData.uid} - creared: {date}</h2>
+      <h2 className="text-center font-bold">Order #{loaderData.uid} - creared: {formatDate( loaderData.created )}</h2>
       <ul className="grid gap-10">
         {loaderData.options.map( ( { option, quantity } ) => (
           <li key={option._id}>

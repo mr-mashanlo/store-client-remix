@@ -1,6 +1,8 @@
 import { Form, useLoaderData } from '@remix-run/react';
 import { FC } from 'react';
 
+import { formatDate } from '@/shared/lib';
+
 import loader from '../api/loader';
 
 const Account: FC = () => {
@@ -19,7 +21,7 @@ const Account: FC = () => {
             ? <div className="flex flex-col justify-center gap-40">
               {loaderData.orders.map( order => (
                 <div key={order._id} className="flex flex-col justify-center gap-20">
-                  <h3 className="text-center font-bold">Order {order.uid} - created: {order.created}</h3>
+                  <h3 className="text-center font-bold">Order #{order.uid} - created: {formatDate( order.created )}</h3>
                   <ul className="grid gap-10">
                     {order.options.map( option => (
                       <li key={option.option._id}>

@@ -1,7 +1,7 @@
 import ky from 'ky';
 
 export const kyInstance = ky.create( {
-  prefixUrl: 'http://localhost:4173',
+  prefixUrl: 'https://store-server-remix.vercel.app',
   credentials: 'include',
   headers: { 'Content-Type': 'application/json' },
   retry: {

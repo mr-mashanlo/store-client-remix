@@ -2,6 +2,7 @@ import { Outlet, useLoaderData } from '@remix-run/react';
 import { FC } from 'react';
 
 import { Header } from '@/widgets/header';
+import { StoreControls } from '@/widgets/store-controls';
 
 import loader from '../api/loader';
 
@@ -14,6 +15,7 @@ const Product: FC = () => {
       <main>
         <Outlet />
       </main>
+      <StoreControls />
     </>
   );
 };

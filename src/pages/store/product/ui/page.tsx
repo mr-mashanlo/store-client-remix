@@ -47,7 +47,7 @@ const Product: FC = () => {
                   </Fragment>
                 ) )}
               </div>
-              <button type="submit" className="w-full mt-5 p-3.5 rounded-xl bg-black text-white outline-offset-3 cursor-pointer disabled:cursor-default disabled:opacity-70 ">Add to cart</button>
+              <button disabled={!selectedOption} type="submit" className="w-full mt-5 p-3.5 rounded-xl bg-black text-white outline-offset-3 cursor-pointer disabled:cursor-default disabled:opacity-80 ">Add to cart</button>
             </Form>
           </div>
         </div>

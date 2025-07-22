@@ -1,6 +1,6 @@
-import loader from '@/app/layouts/main/api/loader';
-import Main from '@/app/layouts/main/ui/layout';
+import loader from '@/app/layouts/product/api/loader';
+import Product from '@/app/layouts/product/ui/layout';
 
 export { loader };
 
-export default Main;
+export default Product;

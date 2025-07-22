@@ -27,7 +27,7 @@ const Checkout: FC = () => {
       </ul>
       <p className="text-center">{loaderData.address.address}</p>
       <div>
-        <Form method="post">
+        <Form method="post" replace>
           <button type="submit" className="w-35 h-10 mx-auto outline-offset-3 rounded-full cursor-pointer flex items-center justify-center bg-black text-white">Buy ${total}</button>
         </Form>
       </div>

@@ -5,6 +5,8 @@ import type { LinksFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { ReactNode } from 'react';
 
+import { ErrorBoundary } from '@/pages/auth/error';
+
 export const links: LinksFunction = () => [
   {
     rel: 'icon',
@@ -47,3 +49,5 @@ export function Layout( { children }: { children: ReactNode } ) {
 export default function App() {
   return <Outlet />;
 }
+
+export { ErrorBoundary };
